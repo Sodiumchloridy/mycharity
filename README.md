@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MyCharity
+Project for `UM HACKATHON DOMAIN 1` (Team: `Leviathan`)
+
+MyCharity is a modern donation platform leveraging financial technology to make charitable giving more transparent, efficient, and inclusive. The platform focuses on Islamic charitable categories including Waqf, Zakat, and Sadaqah.
 
 ## Getting Started
 
-First, run the development server:
+First, install necessary dependencies
+
+```bash
+npm run install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project is built with Next.js 15 and uses a modern tech stack:
 
-## Learn More
+- **Framework**: Next.js with App Router
+- **Styling**: TailwindCSS v4
+- **Typography**: Geist fonts (Sans and Mono)
+- **Language**: TypeScript
 
-To learn more about Next.js, take a look at the following resources:
+Key directories and files:
+- `src/app/` - Contains page components and app-wide configurations
+- `src/components/` - Reusable UI components (Navbar, Footer, etc.)
+- `public/` - Static assets
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Donation Categories
+- **Waqf**: Permanent endowments that provide ongoing benefits
+- **Zakat**: Religious obligation with calculated distribution
+- **Sadaqah**: Voluntary charity for various causes
 
-## Deploy on Vercel
+### Platform Highlights
+- **Automated Efficiency**: Smart contracts for fund distribution
+- **Inclusive Access**: Support for various payment methods including options for the unbanked
+- **Organization Partnerships**: Collaborate with trusted charitable organizations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### User Flows
+- Category selection (Waqf, Zakat, Sadaqah)
+- Organization selection (e.g., Lembaga Zakat Selangor)
+- Payment processing with multiple options
+- Donation tracking and impact assessment
+- Receipt generation and donation history
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Implementation Notes
+
+- The app uses a responsive design approach for mobile and desktop experiences
+- Custom color theming with dark/light mode support
+- Impact statistics and transparent reporting built into the user experience

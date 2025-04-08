@@ -1,103 +1,339 @@
+import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-primary/20 to-background">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center text-center">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+              Transparent, Efficient, <br />
+              <span className="text-primary">Inclusive Charity</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mb-8">
+              MyCharity leverages finance technology to ensure your donations
+              are transparent, efficiently allocated, and accessible to everyone
+              - including the unbanked.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/donate"
+                className="px-8 py-3 rounded-md bg-primary text-primary-foreground text-lg font-medium"
+              >
+                Donate Now
+              </Link>
+              <Link
+                href="/track"
+                className="px-8 py-3 rounded-md bg-secondary text-secondary-foreground text-lg font-medium"
+              >
+                Track Your Impact
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Key Features */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            How We're Different
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Transparency Feature */}
+            <div className="p-6 bg-card rounded-lg shadow-sm border border-border flex flex-col items-center text-center">
+              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Full Transparency</h3>
+              <p className="text-muted-foreground mb-4">
+                Every donation is recorded on a blockchain, creating an
+                immutable record that you can verify at any time.
+              </p>
+              <Link
+                href="/transparency"
+                className="text-primary hover:underline mt-auto"
+              >
+                Learn about our transparency
+              </Link>
+            </div>
+
+            {/* Efficiency Feature */}
+            <div className="p-6 bg-card rounded-lg shadow-sm border border-border flex flex-col items-center text-center">
+              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2v4" />
+                  <path d="M12 18v4" />
+                  <path d="M4.93 4.93l2.83 2.83" />
+                  <path d="M16.24 16.24l2.83 2.83" />
+                  <path d="M2 12h4" />
+                  <path d="M18 12h4" />
+                  <path d="M4.93 19.07l2.83-2.83" />
+                  <path d="M16.24 7.76l2.83-2.83" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Automated Efficiency</h3>
+              <p className="text-muted-foreground mb-4">
+                Smart contracts automatically distribute funds, reducing
+                administrative costs and ensuring your donation has maximum
+                impact.
+              </p>
+              <Link
+                href="/efficiency"
+                className="text-primary hover:underline mt-auto"
+              >
+                See how we maximize impact
+              </Link>
+            </div>
+
+            {/* Inclusivity Feature */}
+            <div className="p-6 bg-card rounded-lg shadow-sm border border-border flex flex-col items-center text-center">
+              <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Inclusive For All</h3>
+              <p className="text-muted-foreground mb-4">
+                Support mobile payments, digital wallets, and cash options to
+                ensure everyone can participate regardless of banking access.
+              </p>
+              <Link
+                href="/inclusivity"
+                className="text-primary hover:underline mt-auto"
+              >
+                Discover inclusive options
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Donation Categories */}
+      <section className="py-20 bg-secondary">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Donation Categories
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Waqf */}
+            <div className="overflow-hidden rounded-lg shadow-sm border border-border bg-card transition-all hover:shadow-md">
+              <div className="h-48 bg-gray-200 relative">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white">Waqf</h3>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-muted-foreground mb-6">
+                  Contribute to permanent endowments that provide ongoing
+                  benefits to the community. Waqf funds are invested, and
+                  proceeds are used for charitable purposes indefinitely.
+                </p>
+                <Link
+                  href="/donate/waqf"
+                  className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium inline-block"
+                >
+                  Donate to Waqf
+                </Link>
+              </div>
+            </div>
+
+            {/* Zakat */}
+            <div className="overflow-hidden rounded-lg shadow-sm border border-border bg-card transition-all hover:shadow-md">
+              <div className="h-48 bg-gray-200 relative">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white">Zakat</h3>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-muted-foreground mb-6">
+                  Fulfill your religious obligation with our Zakat calculator
+                  and distribution service. We ensure your Zakat reaches
+                  eligible recipients across eight prescribed categories.
+                </p>
+                <Link
+                  href="/donate/zakat"
+                  className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium inline-block"
+                >
+                  Calculate & Pay Zakat
+                </Link>
+              </div>
+            </div>
+
+            {/* Sadaqah */}
+            <div className="overflow-hidden rounded-lg shadow-sm border border-border bg-card transition-all hover:shadow-md">
+              <div className="h-48 bg-gray-200 relative">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white">Sadaqah</h3>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-muted-foreground mb-6">
+                  Give voluntary charity to causes that matter to you. From
+                  emergency relief to education and healthcare, your Sadaqah can
+                  make an immediate difference.
+                </p>
+                <Link
+                  href="/donate/sadaqah"
+                  className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium inline-block"
+                >
+                  Give Sadaqah
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Stats */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-16">Our Impact</h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <p className="text-5xl font-bold text-primary mb-2">$2.4M</p>
+              <p className="text-lg text-muted-foreground">
+                Donations Processed
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-5xl font-bold text-primary mb-2">12K+</p>
+              <p className="text-lg text-muted-foreground">Donors</p>
+            </div>
+            <div className="text-center">
+              <p className="text-5xl font-bold text-primary mb-2">96%</p>
+              <p className="text-lg text-muted-foreground">
+                Funds to Beneficiaries
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-5xl font-bold text-primary mb-2">45</p>
+              <p className="text-lg text-muted-foreground">
+                Partner Organizations
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/impact"
+              className="px-6 py-3 rounded-md bg-secondary text-secondary-foreground text-sm font-medium"
+            >
+              View Detailed Impact Reports
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Organizations */}
+      <section className="py-20 bg-secondary">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Trusted Organizations
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+              <div className="text-xl font-semibold text-center">
+                Lembaga Zakat Selangor
+              </div>
+            </div>
+            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+              <div className="text-xl font-semibold text-center">
+                Wakaf Selangor
+              </div>
+            </div>
+            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+              <div className="text-xl font-semibold text-center">
+                Islamic Relief Malaysia
+              </div>
+            </div>
+            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+              <div className="text-xl font-semibold text-center">
+                Global Sadaqah
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/organizations"
+              className="px-6 py-3 rounded-md bg-primary text-primary-foreground text-sm font-medium"
+            >
+              View All Organizations
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">
+            Ready to Make a Difference?
+          </h2>
+          <p className="text-xl max-w-2xl mx-auto mb-8">
+            Join thousands of donors who are transforming lives through
+            transparent, efficient, and inclusive giving.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/donate"
+              className="px-8 py-3 rounded-md bg-background text-foreground text-lg font-medium"
+            >
+              Start Donating
+            </Link>
+            <Link
+              href="/learn"
+              className="px-8 py-3 rounded-md bg-primary-foreground/10 text-primary-foreground text-lg font-medium border border-primary-foreground/20"
+            >
+              Learn More
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -72,7 +72,7 @@ const UserProfile = ({
       {/* Donation button */}
       <div className="mt-8 pt-6 border-t border-border">
         <Link
-          href="/donate"
+          href="/#donation"
           className="w-full flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground"
         >
           Make a New Donation

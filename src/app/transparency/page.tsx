@@ -1,10 +1,10 @@
 // page.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 
 // Simple icon components to replace lucide-react
-const BarChartIcon = () => (
+const BarChartIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="12" y1="20" x2="12" y2="10"></line>
     <line x1="18" y1="20" x2="18" y2="4"></line>
@@ -12,28 +12,28 @@ const BarChartIcon = () => (
   </svg>
 );
 
-const ArrowUpRightIcon = () => (
+const ArrowUpRightIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="7" y1="17" x2="17" y2="7"></line>
     <polyline points="7 7 17 7 17 17"></polyline>
   </svg>
 );
 
-const ArrowDownRightIcon = () => (
+const ArrowDownRightIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="7" y1="7" x2="17" y2="17"></line>
     <polyline points="17 7 17 17 7 17"></polyline>
   </svg>
 );
 
-const CopyIcon = () => (
+const CopyIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
   </svg>
 );
 
-const ExternalLinkIcon = () => (
+const ExternalLinkIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
     <polyline points="15 3 21 3 21 9"></polyline>
@@ -41,7 +41,7 @@ const ExternalLinkIcon = () => (
   </svg>
 );
 
-const InfoIcon = () => (
+const InfoIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10"></circle>
     <line x1="12" y1="16" x2="12" y2="12"></line>
@@ -49,13 +49,13 @@ const InfoIcon = () => (
   </svg>
 );
 
-// Define types for our data structures
+// Define TypeScript interfaces for the data structures
 interface Donor {
   wallet: string;
   amount: string;
 }
 
-interface FundUsage {
+interface FundUtilization {
   date: string;
   amount: string;
   reason: string;
@@ -71,12 +71,14 @@ interface Transaction {
   date: string;
 }
 
-export default function TransparentFundingPage() {
-  const [activeTab, setActiveTab] = useState<'campaign' | 'donors' | 'utilization' | 'transactions'>('campaign');
+type TabType = 'campaign' | 'donors' | 'utilization' | 'transactions';
+
+export default function TransparentFundingPage(): JSX.Element {
+  const [activeTab, setActiveTab] = useState<TabType>('campaign');
   const [copied, setCopied] = useState<string>('');
   
-  // Mock data
-  const totalDonation = "254.35 ETH";
+  // Mock data with proper typing
+  const totalDonation: string = "254.35 ETH";
   const donorList: Donor[] = [
     { wallet: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F", amount: "50.21 ETH" },
     { wallet: "0x2546BcD3c84621e976D8185a91A922aE77ECEc30", amount: "30.10 ETH" },
@@ -85,7 +87,7 @@ export default function TransparentFundingPage() {
     { wallet: "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199", amount: "12.44 ETH" }
   ];
   
-  const fundUtilization: FundUsage[] = [
+  const fundUtilization: FundUtilization[] = [
     { date: "2025-03-15", amount: "12.5 ETH", reason: "Educational supplies for orphanage", status: "completed" },
     { date: "2025-03-20", amount: "25.0 ETH", reason: "Medical supplies for refugee camp", status: "completed" },
     { date: "2025-03-28", amount: "18.3 ETH", reason: "Food distribution program", status: "pending" },
@@ -99,13 +101,24 @@ export default function TransparentFundingPage() {
     { txHash: "0x4d8c3760d5e5b2837", type: "outgoing", amount: "25.0 ETH", from: "Contract", to: "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199", date: "2025-03-20" }
   ];
 
+  // Fixed copyToClipboard function with proper error handling
   const copyToClipboard = (text: string): void => {
-    navigator.clipboard.writeText(text);
-    setCopied(text);
-    setTimeout(() => setCopied(''), 2000);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          setCopied(text);
+          setTimeout(() => setCopied(''), 2000);
+        })
+        .catch(err => {
+          console.error('Failed to copy text: ', err);
+        });
+    } else {
+      // Fallback for browsers that don't support clipboard API
+      console.error('Clipboard API not supported');
+    }
   };
 
-  const renderTabContent = () => {
+  const renderTabContent = (): JSX.Element | null => {
     switch(activeTab) {
       case 'campaign':
         return (
@@ -172,6 +185,7 @@ export default function TransparentFundingPage() {
                             <button 
                               onClick={() => copyToClipboard(donor.wallet)}
                               className="ml-2 text-gray-400 hover:text-gray-600"
+                              type="button"
                             >
                               <span className="h-4 w-4"><CopyIcon /></span>
                             </button>
@@ -291,9 +305,11 @@ export default function TransparentFundingPage() {
                             <button 
                               onClick={() => copyToClipboard(tx.txHash)}
                               className="ml-2 text-gray-400 hover:text-gray-600"
+                              type="button"
                             >
                               <span className="h-4 w-4"><CopyIcon /></span>
                             </button>
+                            {copied === tx.txHash && <span className="ml-2 text-xs text-green-600">Copied!</span>}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
@@ -392,7 +408,7 @@ export default function TransparentFundingPage() {
             <select
               className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               value={activeTab}
-              onChange={(e) => setActiveTab(e.target.value as 'campaign' | 'donors' | 'utilization' | 'transactions')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setActiveTab(e.target.value as TabType)}
             >
               <option value="campaign">Campaign Page</option>
               <option value="donors">Donor List</option>
@@ -410,6 +426,7 @@ export default function TransparentFundingPage() {
                       ? 'border-indigo-500 text-indigo-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  type="button"
                 >
                   Campaign Page
                 </button>
@@ -420,6 +437,7 @@ export default function TransparentFundingPage() {
                       ? 'border-indigo-500 text-indigo-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  type="button"
                 >
                   Donor List
                 </button>
@@ -430,6 +448,7 @@ export default function TransparentFundingPage() {
                       ? 'border-indigo-500 text-indigo-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  type="button"
                 >
                   Fund Utilization
                 </button>
@@ -440,6 +459,7 @@ export default function TransparentFundingPage() {
                       ? 'border-indigo-500 text-indigo-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  type="button"
                 >
                   Transaction History
                 </button>

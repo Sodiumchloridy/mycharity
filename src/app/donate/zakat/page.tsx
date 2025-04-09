@@ -6,11 +6,11 @@ import Link from "next/link";
 export default function ZakatDonation() {
   const [step, setStep] = useState(1);
   const [wealthType, setWealthType] = useState("cash");
-  const [zakatAmount, setZakatAmount] = useState<number | null>(null);
   const [wealthAmount, setWealthAmount] = useState<number>(0);
   const [selectedOrganization, setSelectedOrganization] = useState<
     string | null
   >(null);
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
   const [calculation, setCalculation] = useState({
     total: 0,
     zakatPayable: 0,
@@ -25,7 +25,6 @@ export default function ZakatDonation() {
         total: wealthAmount,
         zakatPayable: 0,
       });
-      setZakatAmount(0);
     } else {
       // Calculate 2.5% of wealth
       const payable = wealthAmount * 0.025;
@@ -34,7 +33,6 @@ export default function ZakatDonation() {
         total: wealthAmount,
         zakatPayable: payable,
       });
-      setZakatAmount(payable);
     }
     setStep(2);
   };
@@ -60,7 +58,6 @@ export default function ZakatDonation() {
 
   const handleOrganizationSelect = (id: string) => {
     setSelectedOrganization(id);
-    setStep(3);
   };
 
   const proceedToPayment = () => {
@@ -100,57 +97,65 @@ export default function ZakatDonation() {
             <div className="flex items-center">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                  step >= 1
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground"
+                  step === 1
+                    ? "bg-blue-600 text-white"
+                    : step > 1
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
                 }`}
               >
                 1
               </div>
               <div
                 className={`h-1 w-16 mx-1 ${
-                  step >= 2 ? "bg-primary" : "bg-secondary"
+                  step >= 2 ? "bg-blue-600" : "bg-gray-200"
                 }`}
               ></div>
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                  step >= 2
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground"
+                  step === 2
+                    ? "bg-blue-600 text-white"
+                    : step > 2
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
                 }`}
               >
                 2
               </div>
               <div
                 className={`h-1 w-16 mx-1 ${
-                  step >= 3 ? "bg-primary" : "bg-secondary"
+                  step >= 3 ? "bg-blue-600" : "bg-gray-200"
                 }`}
               ></div>
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                  step >= 3
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground"
+                  step === 3
+                    ? "bg-blue-600 text-white"
+                    : step > 3
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
                 }`}
               >
                 3
               </div>
               <div
                 className={`h-1 w-16 mx-1 ${
-                  step >= 4 ? "bg-primary" : "bg-secondary"
+                  step >= 4 ? "bg-blue-600" : "bg-gray-200"
                 }`}
               ></div>
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                  step >= 4
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground"
+                  step === 4
+                    ? "bg-blue-600 text-white"
+                    : step > 4
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
                 }`}
               >
                 4
               </div>
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-gray-500">
               {step === 1 && "Calculate"}
               {step === 2 && "Select Organization"}
               {step === 3 && "Review & Confirm"}
@@ -174,10 +179,8 @@ export default function ZakatDonation() {
               </label>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <button
-                  className={`p-4 rounded-md border ${
-                    wealthType === "cash"
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
+                  className={`selection-btn p-4 rounded-md transition-all ${
+                    wealthType === "cash" ? "active" : ""
                   }`}
                   onClick={() => setWealthType("cash")}
                 >
@@ -187,10 +190,8 @@ export default function ZakatDonation() {
                   </div>
                 </button>
                 <button
-                  className={`p-4 rounded-md border ${
-                    wealthType === "gold"
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
+                  className={`selection-btn p-4 rounded-md transition-all ${
+                    wealthType === "gold" ? "active" : ""
                   }`}
                   onClick={() => setWealthType("gold")}
                 >
@@ -200,10 +201,8 @@ export default function ZakatDonation() {
                   </div>
                 </button>
                 <button
-                  className={`p-4 rounded-md border ${
-                    wealthType === "investments"
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
+                  className={`selection-btn p-4 rounded-md transition-all ${
+                    wealthType === "investments" ? "active" : ""
                   }`}
                   onClick={() => setWealthType("investments")}
                 >
@@ -339,11 +338,9 @@ export default function ZakatDonation() {
                 <button
                   key={org.id}
                   onClick={() => handleOrganizationSelect(org.id)}
-                  className={`w-full text-left p-4 rounded-md border ${
-                    selectedOrganization === org.id
-                      ? "border-primary bg-primary/5"
-                      : "border-border"
-                  } transition-colors hover:border-primary`}
+                  className={`selection-btn w-full text-left p-4 rounded-md transition-all ${
+                    selectedOrganization === org.id ? "active" : ""
+                  }`}
                 >
                   <div className="font-medium mb-1">{org.name}</div>
                   <div className="text-sm text-muted-foreground">
@@ -361,13 +358,21 @@ export default function ZakatDonation() {
                 Back
               </button>
 
-              {calculation.zakatPayable === 0 && (
+              {calculation.zakatPayable === 0 ? (
                 <Link
                   href="/donate/sadaqah"
                   className="px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium"
                 >
                   Give Sadaqah Instead
                 </Link>
+              ) : (
+                <button
+                  onClick={() => setStep(3)}
+                  className="px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium"
+                  disabled={!selectedOrganization}
+                >
+                  Proceed to Review
+                </button>
               )}
             </div>
           </div>
@@ -507,7 +512,12 @@ export default function ZakatDonation() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <button className="p-4 border border-border rounded-md hover:border-primary bg-background flex flex-col items-center justify-center">
+              <button
+                onClick={() => setPaymentMethod("card")}
+                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${
+                  paymentMethod === "card" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -525,7 +535,12 @@ export default function ZakatDonation() {
                 </svg>
                 <span className="font-medium">Credit/Debit Card</span>
               </button>
-              <button className="p-4 border border-border rounded-md hover:border-primary bg-background flex flex-col items-center justify-center">
+              <button
+                onClick={() => setPaymentMethod("fpx")}
+                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${
+                  paymentMethod === "fpx" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -544,7 +559,12 @@ export default function ZakatDonation() {
                 </svg>
                 <span className="font-medium">FPX</span>
               </button>
-              <button className="p-4 border border-border rounded-md hover:border-primary bg-background flex flex-col items-center justify-center">
+              <button
+                onClick={() => setPaymentMethod("ewallet")}
+                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${
+                  paymentMethod === "ewallet" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

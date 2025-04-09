@@ -8,10 +8,8 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Donate", path: "/donate" },
     { name: "Track Donations", path: "/track" },
-    { name: "Impact", path: "/impact" },
-    { name: "About", path: "/about" },
+    { name: "Donate Now", path: "/#donation" },
   ];
 
   return (
@@ -28,7 +26,7 @@ const Navbar = () => {
                 key={item.path}
                 href={item.path}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.path ? "text-primary" : "text-foreground/80"
+                  pathname === item.path ? "text-black" : "text-zinc-700"
                 }`}
               >
                 {item.name}
@@ -43,12 +41,7 @@ const Navbar = () => {
             >
               Dashboard
             </Link>
-            <Link
-              href="/donate"
-              className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium"
-            >
-              Donate Now
-            </Link>
+
           </div>
         </div>
       </div>

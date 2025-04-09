@@ -8,7 +8,7 @@ MyCharity is a modern donation platform leveraging financial technology to make 
 First, install necessary dependencies
 
 ```bash
-npm run install
+npm install
 ```
 
 Then, run the development server:

@@ -20,14 +20,14 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/donate"
-                className="px-8 py-3 rounded-md bg-primary text-primary-foreground text-lg font-medium"
+                href="/#donation"
+                className="btn px-8 py-3 rounded-md bg-primary text-primary-foreground text-lg font-medium transition-all hover:shadow-md"
               >
                 Donate Now
               </Link>
               <Link
                 href="/track"
-                className="px-8 py-3 rounded-md bg-secondary text-secondary-foreground text-lg font-medium"
+                className="btn-secondary px-8 py-3 rounded-md text-lg font-medium transition-all hover:shadow-md"
               >
                 Track Your Impact
               </Link>
@@ -40,12 +40,12 @@ export default function Home() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            How We're Different
+            How We&apos;re Different
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Transparency Feature */}
-            <div className="p-6 bg-card rounded-lg shadow-sm border border-border flex flex-col items-center text-center">
+            <div className="interactive-card p-6 bg-card rounded-lg shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,16 +67,13 @@ export default function Home() {
                 Every donation is recorded on a blockchain, creating an
                 immutable record that you can verify at any time.
               </p>
-              <Link
-                href="/transparency"
-                className="text-primary hover:underline mt-auto"
-              >
+              <Link href="/transparency" className="mt-auto">
                 Learn about our transparency
               </Link>
             </div>
 
             {/* Efficiency Feature */}
-            <div className="p-6 bg-card rounded-lg shadow-sm border border-border flex flex-col items-center text-center">
+            <div className="interactive-card p-6 bg-card rounded-lg shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,16 +102,13 @@ export default function Home() {
                 administrative costs and ensuring your donation has maximum
                 impact.
               </p>
-              <Link
-                href="/efficiency"
-                className="text-primary hover:underline mt-auto"
-              >
+              <Link href="/efficiency" className="mt-auto">
                 See how we maximize impact
               </Link>
             </div>
 
             {/* Inclusivity Feature */}
-            <div className="p-6 bg-card rounded-lg shadow-sm border border-border flex flex-col items-center text-center">
+            <div className="interactive-card p-6 bg-card rounded-lg shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -138,10 +132,7 @@ export default function Home() {
                 Support mobile payments, digital wallets, and cash options to
                 ensure everyone can participate regardless of banking access.
               </p>
-              <Link
-                href="/inclusivity"
-                className="text-primary hover:underline mt-auto"
-              >
+              <Link href="/inclusivity" className="mt-auto">
                 Discover inclusive options
               </Link>
             </div>
@@ -150,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* Donation Categories */}
-      <section className="py-20 bg-secondary">
+      <section id="donation" className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
             Donation Categories
@@ -158,8 +149,14 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Waqf */}
-            <div className="overflow-hidden rounded-lg shadow-sm border border-border bg-card transition-all hover:shadow-md">
-              <div className="h-48 bg-gray-200 relative">
+            <div className="interactive-card overflow-hidden rounded-lg shadow-sm bg-card">
+              <div className="h-48 relative">
+                <Image
+                  src="/waqf.jpg"
+                  alt="Waqf donation category"
+                  fill
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white">Waqf</h3>
                 </div>
@@ -172,7 +169,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/donate/waqf"
-                  className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium inline-block"
+                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block"
                 >
                   Donate to Waqf
                 </Link>
@@ -180,8 +177,14 @@ export default function Home() {
             </div>
 
             {/* Zakat */}
-            <div className="overflow-hidden rounded-lg shadow-sm border border-border bg-card transition-all hover:shadow-md">
-              <div className="h-48 bg-gray-200 relative">
+            <div className="interactive-card overflow-hidden rounded-lg shadow-sm bg-card">
+              <div className="h-48 relative">
+                <Image
+                  src="/zakat.jpg"
+                  alt="Zakat donation category"
+                  fill
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white">Zakat</h3>
                 </div>
@@ -194,7 +197,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/donate/zakat"
-                  className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium inline-block"
+                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block"
                 >
                   Calculate & Pay Zakat
                 </Link>
@@ -202,8 +205,14 @@ export default function Home() {
             </div>
 
             {/* Sadaqah */}
-            <div className="overflow-hidden rounded-lg shadow-sm border border-border bg-card transition-all hover:shadow-md">
-              <div className="h-48 bg-gray-200 relative">
+            <div className="interactive-card overflow-hidden rounded-lg shadow-sm bg-card">
+              <div className="h-48 relative">
+                <Image
+                  src="/saqadah.png"
+                  alt="Sadaqah donation category"
+                  fill
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white">Sadaqah</h3>
                 </div>
@@ -216,7 +225,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/donate/sadaqah"
-                  className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium inline-block"
+                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block"
                 >
                   Give Sadaqah
                 </Link>
@@ -259,7 +268,7 @@ export default function Home() {
           <div className="mt-12 flex justify-center">
             <Link
               href="/impact"
-              className="px-6 py-3 rounded-md bg-secondary text-secondary-foreground text-sm font-medium"
+              className="btn-secondary px-6 py-3 rounded-md text-sm font-medium"
             >
               View Detailed Impact Reports
             </Link>
@@ -275,22 +284,22 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+            <div className="interactive-card aspect-video bg-card rounded-lg flex items-center justify-center p-6">
               <div className="text-xl font-semibold text-center">
                 Lembaga Zakat Selangor
               </div>
             </div>
-            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+            <div className="interactive-card aspect-video bg-card rounded-lg flex items-center justify-center p-6">
               <div className="text-xl font-semibold text-center">
                 Wakaf Selangor
               </div>
             </div>
-            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+            <div className="interactive-card aspect-video bg-card rounded-lg flex items-center justify-center p-6">
               <div className="text-xl font-semibold text-center">
                 Islamic Relief Malaysia
               </div>
             </div>
-            <div className="aspect-video bg-card rounded-lg flex items-center justify-center p-6 border border-border">
+            <div className="interactive-card aspect-video bg-card rounded-lg flex items-center justify-center p-6">
               <div className="text-xl font-semibold text-center">
                 Global Sadaqah
               </div>
@@ -300,7 +309,7 @@ export default function Home() {
           <div className="mt-12 flex justify-center">
             <Link
               href="/organizations"
-              className="px-6 py-3 rounded-md bg-primary text-primary-foreground text-sm font-medium"
+              className="btn px-6 py-3 rounded-md text-sm font-medium"
             >
               View All Organizations
             </Link>
@@ -320,14 +329,14 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/donate"
-              className="px-8 py-3 rounded-md bg-background text-foreground text-lg font-medium"
+              href="/#donation"
+              className="btn px-8 py-3 rounded-md bg-background text-foreground text-lg font-medium"
             >
               Start Donating
             </Link>
             <Link
               href="/learn"
-              className="px-8 py-3 rounded-md bg-primary-foreground/10 text-primary-foreground text-lg font-medium border border-primary-foreground/20"
+              className="btn-secondary px-8 py-3 rounded-md text-primary-foreground text-lg font-medium border border-primary-foreground/20"
             >
               Learn More
             </Link>

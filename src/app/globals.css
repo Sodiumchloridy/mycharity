@@ -3,6 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --interactive: #0c68d1;
+  --interactive-hover: #09438a;
+  --interactive-bg: rgba(12, 104, 209, 0.05);
+  --interactive-border: rgba(12, 104, 209, 0.2);
+  --interactive-active-bg: rgba(12, 104, 209, 0.8);
+  --interactive-active-border: rgba(12, 104, 209, 1);
+  --interactive-active-text: #ffffff;
+  --selection-light: #e6f0fd;
+  --selection-dark: #0950a0;
 }
 
 @theme inline {
@@ -16,6 +25,15 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --interactive: #3b82f6;
+    --interactive-hover: #60a5fa;
+    --interactive-bg: rgba(59, 130, 246, 0.1);
+    --interactive-border: rgba(59, 130, 246, 0.3);
+    --interactive-active-bg: rgba(59, 130, 246, 0.9);
+    --interactive-active-border: rgba(59, 130, 246, 1);
+    --interactive-active-text: #ffffff;
+    --selection-light: #1e3a8a20;
+    --selection-dark: #2563eb;
   }
 }
 
@@ -24,3 +42,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+

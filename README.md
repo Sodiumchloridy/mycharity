@@ -1,7 +1,14 @@
+![image](https://github.com/user-attachments/assets/0705bdbe-1a6a-47c4-ae47-4cd4e529e079)
+
 > [!NOTE]
-> This project was developed for the UM HACKATHON DOMAIN 1 (Enhancing Charity & Donations through Fintech & Technology) by Team Leviathan.
+> This project was developed for the UM HACKATHON 2025 Domain 1: Enhancing Charity & Donations through Fintech & Technology by Team Leviathan.
+>
+> **Challenge**: Develop innovative and scalable solutions (plus point: Shariah-compliant) that can be adopted by 
+> authorities (such as Waqf and Zakat institutions) and non-profits organisations to enhance governance,
+> optimize fund utilization, and create sustainable social impact.
 
 # MyCharity
+![image](https://github.com/user-attachments/assets/d312125c-a31c-4d62-9a57-8f971b3126b2)
 
 MyCharity is an Islamic charitable donation platform that modernizes charitable giving through transparent, efficient, and inclusive financial technology with a focus on Islamic charitable categories.
 

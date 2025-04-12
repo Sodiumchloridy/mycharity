@@ -26,7 +26,7 @@ const Navbar = () => {
                 key={item.path}
                 href={item.path}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.path ? "text-black" : "text-zinc-700"
+                  pathname === item.path ? "text-white" : "text-zinc-500"
                 }`}
               >
                 {item.name}

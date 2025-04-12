@@ -1,7 +1,17 @@
-# MyCharity
-Project for `UM HACKATHON DOMAIN 1` (Team: `Leviathan`)
+> [!NOTE]
+> This project was developed for the UM HACKATHON DOMAIN 1 (Enhancing Charity & Donations through Fintech & Technology) by Team Leviathan.
 
-MyCharity is a modern donation platform leveraging financial technology to make charitable giving more transparent, efficient, and inclusive. The platform focuses on Islamic charitable categories including Waqf, Zakat, and Sadaqah.
+# MyCharity
+
+MyCharity is an Islamic charitable donation platform that modernizes charitable giving through transparent, efficient, and inclusive financial technology with a focus on Islamic charitable categories.
+
+## About
+
+MyCharity provides a comprehensive solution for Muslims to fulfill their charitable obligations and contributions through three main categories:
+
+- **Waqf**: Permanent endowments that generate ongoing benefits for communities
+- **Zakat**: Religious obligation with calculated distribution to eligible recipients
+- **Sadaqah**: Voluntary charity for various causes and immediate impact
 
 ## Getting Started
 
@@ -29,16 +39,20 @@ The project is built with Next.js 15 and uses a modern tech stack:
 - **Language**: TypeScript
 
 Key directories and files:
-- `src/app/` - Contains page components and app-wide configurations
-- `src/components/` - Reusable UI components (Navbar, Footer, etc.)
-- `public/` - Static assets
+- `src/app/` - Page components and routing (home, donate, track, dashboard)
+- `src/components/` - Reusable UI components (Navbar, DonationForm, etc.)
+- `src/app/donate/` - Donation flows for each category (waqf, zakat, sadaqah)
+- `src/app/track/` - Donation tracking and impact monitoring features
+- `src/app/dashboard/` - User dashboard for donation history and management
+- `public/` - Static assets (images, icons, etc.)
 
 ## Key Features
 
-### Donation Categories
-- **Waqf**: Permanent endowments that provide ongoing benefits
-- **Zakat**: Religious obligation with calculated distribution
-- **Sadaqah**: Voluntary charity for various causes
+### Islamic-Focused Donation Experience
+- **Zakat Calculator**: Helps users accurately calculate their Zakat obligations
+- **Transparent Distribution**: Allocation tracking across eight prescribed categories
+- **Sadaqah Campaigns**: Support urgent relief, education, healthcare, and more
+- **Waqf Investment**: Long-term endowment opportunities with ongoing benefits
 
 ### Platform Highlights
 - **Automated Efficiency**: Smart contracts for fund distribution

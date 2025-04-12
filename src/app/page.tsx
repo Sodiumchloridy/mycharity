@@ -169,7 +169,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/donate/waqf"
-                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block"
+                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block border hover:border-gray-500"
                 >
                   Donate to Waqf
                 </Link>
@@ -197,7 +197,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/donate/zakat"
-                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block"
+                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block border hover:border-gray-500"
                 >
                   Calculate & Pay Zakat
                 </Link>
@@ -225,7 +225,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/donate/sadaqah"
-                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block"
+                  className="btn px-4 py-2 rounded-md text-sm font-medium inline-block border hover:border-gray-500"
                 >
                   Give Sadaqah
                 </Link>
@@ -305,15 +305,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <div className="mt-12 flex justify-center">
-            <Link
-              href="/organizations"
-              className="btn px-6 py-3 rounded-md text-sm font-medium"
-            >
-              View All Organizations
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -330,15 +321,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/#donation"
-              className="btn px-8 py-3 rounded-md bg-background text-foreground text-lg font-medium"
+              className="btn-secondary px-8 py-3 rounded-md text-primary-foreground text-lg font-medium border hover:border-gray-500"
             >
               Start Donating
-            </Link>
-            <Link
-              href="/learn"
-              className="btn-secondary px-8 py-3 rounded-md text-primary-foreground text-lg font-medium border border-primary-foreground/20"
-            >
-              Learn More
             </Link>
           </div>
         </div>

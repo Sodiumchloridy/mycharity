@@ -4,8 +4,17 @@ import Link from "next/link";
 /**
  * TaxDocuments component to display tax documents and receipts
  */
+interface Certificate {
+  id: string;
+  year: number;
+  amount: number;
+  status: string;
+}
+
 interface TaxDocumentsProps {
-  userData: any;
+  userData: {
+    certificates: Certificate[];
+  };
 }
 
 const TaxDocuments: React.FC<TaxDocumentsProps> = ({ userData }) => {
@@ -32,7 +41,7 @@ const TaxDocuments: React.FC<TaxDocumentsProps> = ({ userData }) => {
               </tr>
             </thead>
             <tbody>
-              {userData.certificates.map((certificate) => (
+              {userData.certificates.map((certificate: any) => (
                 <tr key={certificate.id} className="border-b border-border">
                   <td className="p-3">{certificate.id}</td>
                   <td className="p-3">{certificate.year}</td>

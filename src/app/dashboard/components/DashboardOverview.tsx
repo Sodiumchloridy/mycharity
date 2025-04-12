@@ -85,7 +85,7 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
       {userData.scheduledDonations.length > 0 && (
         <div className="bg-card rounded-lg border border-border p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">Recurring Donations</h2>
-          {userData.scheduledDonations.map((donation) => (
+          {userData.scheduledDonations.map((donation: any) => (
             <div
               key={donation.id}
               className="flex items-center justify-between p-4 bg-secondary rounded-lg"

@@ -54,7 +54,7 @@ const DonationHistory: React.FC<DonationHistoryProps> = ({
               </tr>
             </thead>
             <tbody>
-              {userData.recentDonations.map((donation) => (
+              {userData.recentDonations.map((donation: any) => (
                 <tr key={donation.id} className="border-b border-border">
                   <td className="p-3">{formatDate(donation.date)}</td>
                   <td className="p-3">{donation.type}</td>

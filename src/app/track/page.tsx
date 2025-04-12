@@ -16,7 +16,7 @@ import TrackingInfo from "./components/TrackingInfo";
 import FAQSection from "./components/FAQSection";
 
 // Import sample data and types
-import { sampleTransactions, Transaction } from "./data/sampleData";
+import { sampleTransactions, Transaction } from "@/data/sampleData";
 
 export default function DonationTracker() {
   const [trackingId, setTrackingId] = useState("");

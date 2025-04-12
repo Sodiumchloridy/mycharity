@@ -3,58 +3,65 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-export default function ZakatDonation() {
+export default function SadaqahDonation() {
   const [step, setStep] = useState(1);
-  const [wealthType, setWealthType] = useState("cash");
-  const [wealthAmount, setWealthAmount] = useState<number>(0);
-  const [selectedOrganization, setSelectedOrganization] = useState<
-    string | null
-  >(null);
+  const [donationType, setDonationType] = useState("general");
+  const [donationAmount, setDonationAmount] = useState<number>(50);
+  const [customAmount, setCustomAmount] = useState<number | null>(null);
+  const [recurringDonation, setRecurringDonation] = useState(false);
+  const [frequency, setFrequency] = useState("monthly");
+  const [selectedOrganization, setSelectedOrganization] = useState<string | null>(null);
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
-  const [calculation, setCalculation] = useState({
-    total: 0,
-    zakatPayable: 0,
-    nisabThreshold: 16875, // in MYR, example threshold
-  });
+  const [message, setMessage] = useState<string>("");
 
-  const calculateZakat = () => {
-    if (wealthAmount < calculation.nisabThreshold) {
-      // Below nisab threshold
-      setCalculation({
-        ...calculation,
-        total: wealthAmount,
-        zakatPayable: 0,
-      });
+  const predefinedAmounts = [10, 50, 100, 200, 500];
+
+  const handleAmountSelect = (amount: number) => {
+    setDonationAmount(amount);
+    setCustomAmount(null);
+  };
+
+  const handleCustomAmount = (value: number | null) => {
+    if (value && value > 0) {
+      setCustomAmount(value);
+      setDonationAmount(value);
     } else {
-      // Calculate 2.5% of wealth
-      const payable = wealthAmount * 0.025;
-      setCalculation({
-        ...calculation,
-        total: wealthAmount,
-        zakatPayable: payable,
-      });
+      setCustomAmount(null);
+      setDonationAmount(50); // Default to first predefined amount
     }
-    setStep(2);
   };
 
   const organizations = [
     {
-      id: "lzs",
-      name: "Lembaga Zakat Selangor",
-      description:
-        "Official zakat collection and distribution agency for Selangor",
-    },
-    {
-      id: "ppz",
-      name: "Pusat Pungutan Zakat MAIWP",
-      description: "Zakat collection center for Federal Territories",
-    },
-    {
       id: "irm",
       name: "Islamic Relief Malaysia",
-      description: "International humanitarian organization",
+      description: "Emergency response and development projects in Malaysia and globally",
+    },
+    {
+      id: "gs",
+      name: "Global Sadaqah",
+      description: "Connecting donors to verified charitable causes via blockchain",
+    },
+    {
+      id: "erman",
+      name: "Education Resource Malaysia Network",
+      description: "Supporting educational initiatives for underprivileged children",
+    },
+    {
+      id: "mmss",
+      name: "Malaysian Medical Support Society",
+      description: "Healthcare support for the poor and medical emergency relief",
     },
   ];
+
+  const causes = {
+    general: "General Sadaqah Fund",
+    emergency: "Emergency Relief",
+    orphans: "Orphan Sponsorship",
+    education: "Education Support",
+    medical: "Medical Aid",
+    food: "Food Security",
+  };
 
   const handleOrganizationSelect = (id: string) => {
     setSelectedOrganization(id);
@@ -90,66 +97,73 @@ export default function ZakatDonation() {
           </Link>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold mb-6">Zakat Donation</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-6">Sadaqah Donation</h1>
 
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 1
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  step === 1
                     ? "bg-blue-600 text-white"
                     : step > 1
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
+                }`}
               >
                 1
               </div>
               <div
-                className={`h-1 w-16 mx-1 ${step >= 2 ? "bg-blue-600" : "bg-gray-200"
-                  }`}
+                className={`h-1 w-16 mx-1 ${
+                  step >= 2 ? "bg-blue-600" : "bg-gray-200"
+                }`}
               ></div>
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 2
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  step === 2
                     ? "bg-blue-600 text-white"
                     : step > 2
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
+                }`}
               >
                 2
               </div>
               <div
-                className={`h-1 w-16 mx-1 ${step >= 3 ? "bg-blue-600" : "bg-gray-200"
-                  }`}
+                className={`h-1 w-16 mx-1 ${
+                  step >= 3 ? "bg-blue-600" : "bg-gray-200"
+                }`}
               ></div>
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 3
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  step === 3
                     ? "bg-blue-600 text-white"
                     : step > 3
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
+                }`}
               >
                 3
               </div>
               <div
-                className={`h-1 w-16 mx-1 ${step >= 4 ? "bg-blue-600" : "bg-gray-200"
-                  }`}
+                className={`h-1 w-16 mx-1 ${
+                  step >= 4 ? "bg-blue-600" : "bg-gray-200"
+                }`}
               ></div>
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 4
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  step === 4
                     ? "bg-blue-600 text-white"
                     : step > 4
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700"
+                }`}
               >
                 4
               </div>
             </div>
             <div className="text-sm text-gray-500">
-              {step === 1 && "Calculate"}
+              {step === 1 && "Choose Amount"}
               {step === 2 && "Select Organization"}
               {step === 3 && "Review & Confirm"}
               {step === 4 && "Payment"}
@@ -159,91 +173,106 @@ export default function ZakatDonation() {
 
         {step === 1 && (
           <div className="bg-card rounded-lg border border-border p-6">
-            <h2 className="text-xl font-bold mb-4">Calculate Your Zakat</h2>
+            <h2 className="text-xl font-bold mb-4">Choose Sadaqah Details</h2>
             <p className="text-muted-foreground mb-6">
-              Zakat is payable at 2.5% on wealth held for one lunar year, if the
-              total value exceeds the Nisab threshold (currently RM{" "}
-              {calculation.nisabThreshold.toLocaleString()}).
+              Sadaqah is a voluntary charitable act that can be given any time and in any amount. 
+              Your contribution will help those in need and is a means of seeking Allah's blessings.
             </p>
 
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">
-                Wealth Type
+                Select Cause
               </label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <button
-                  className={`selection-btn p-4 rounded-md transition-all ${wealthType === "cash" ? "border" : ""
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+                {Object.entries(causes).map(([key, value]) => (
+                  <button
+                    key={key}
+                    className={`selection-btn p-4 rounded-md transition-all ${
+                      donationType === key ? "border" : ""
                     }`}
-                  onClick={() => setWealthType("cash")}
-                >
-                  <div className="font-medium mb-1">Cash & Savings</div>
-                  <div className="text-xs text-muted-foreground">
-                    Bank accounts, cash in hand
-                  </div>
-                </button>
-                <button
-                  className={`selection-btn p-4 rounded-md transition-all ${wealthType === "gold" ? "border" : ""
-                    }`}
-                  onClick={() => setWealthType("gold")}
-                >
-                  <div className="font-medium mb-1">Gold & Silver</div>
-                  <div className="text-xs text-muted-foreground">
-                    Jewelry, precious metals
-                  </div>
-                </button>
-                <button
-                  className={`selection-btn p-4 rounded-md transition-all ${wealthType === "investments" ? "border" : ""
-                    }`}
-                  onClick={() => setWealthType("investments")}
-                >
-                  <div className="font-medium mb-1">Investments</div>
-                  <div className="text-xs text-muted-foreground">
-                    Stocks, mutual funds, crypto
-                  </div>
-                </button>
+                    onClick={() => setDonationType(key)}
+                  >
+                    <div className="font-medium">{value}</div>
+                  </button>
+                ))}
               </div>
             </div>
 
             <div className="mb-8">
-              <label
-                htmlFor="wealthAmount"
-                className="block text-sm font-medium mb-2"
-              >
-                Value in MYR
+              <label className="block text-sm font-medium mb-2">
+                Donation Amount (MYR)
               </label>
-              <div className="relative">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-3 mb-3">
+                {predefinedAmounts.map((amount) => (
+                  <button
+                    key={amount}
+                    className={`selection-btn p-4 rounded-md transition-all ${
+                      donationAmount === amount && !customAmount ? "border" : ""
+                    }`}
+                    onClick={() => handleAmountSelect(amount)}
+                  >
+                    <div className="font-medium">RM {amount}</div>
+                  </button>
+                ))}
+              </div>
+              
+              <div className="relative mt-4">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <span className="text-muted-foreground">RM</span>
                 </div>
                 <input
                   type="number"
-                  id="wealthAmount"
-                  value={wealthAmount || ""}
-                  onChange={(e) =>
-                    setWealthAmount(parseFloat(e.target.value) || 0)
-                  }
-                  min="0"
+                  value={customAmount || ""}
+                  onChange={(e) => handleCustomAmount(e.target.value ? parseFloat(e.target.value) : null)}
                   className="block w-full rounded-md border border-input pl-12 py-2 bg-background"
-                  placeholder="0.00"
+                  placeholder="Custom amount"
+                  min="1"
                 />
               </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                Enter the total value of your{" "}
-                {wealthType === "cash"
-                  ? "cash and savings"
-                  : wealthType === "gold"
-                    ? "gold and silver"
-                    : "investments"}{" "}
-                held for one lunar year.
-              </p>
+            </div>
+
+            <div className="mb-8">
+              <div className="flex items-center mb-4">
+                <input
+                  id="recurring"
+                  type="checkbox"
+                  checked={recurringDonation}
+                  onChange={(e) => setRecurringDonation(e.target.checked)}
+                  className="h-4 w-4 text-primary border-gray-300 rounded"
+                />
+                <label htmlFor="recurring" className="ml-2 text-sm font-medium">
+                  Make this a recurring donation
+                </label>
+              </div>
+              
+              {recurringDonation && (
+                <div className="pl-6">
+                  <label className="block text-sm font-medium mb-2">
+                    Frequency
+                  </label>
+                  <select
+                    value={frequency}
+                    onChange={(e) => setFrequency(e.target.value)}
+                    className="block w-full md:w-1/2 rounded-md border border-input py-2 px-3 bg-background"
+                  >
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="quarterly">Quarterly</option>
+                  </select>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    You can cancel your recurring donation at any time from your account.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="flex justify-end">
               <button
-                onClick={calculateZakat}
+                onClick={() => setStep(2)}
                 className="px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium"
+                disabled={donationAmount <= 0}
               >
-                Calculate Zakat
+                Continue
               </button>
             </div>
           </div>
@@ -251,85 +280,23 @@ export default function ZakatDonation() {
 
         {step === 2 && (
           <div className="bg-card rounded-lg border border-border p-6">
-            <h2 className="text-xl font-bold mb-4">Your Zakat Calculation</h2>
-
-            <div className="mb-8 p-6 bg-secondary rounded-lg">
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <div className="text-sm text-muted-foreground">
-                    Total Wealth
-                  </div>
-                  <div className="text-xl font-semibold">
-                    RM{" "}
-                    {calculation.total.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">
-                    Nisab Threshold
-                  </div>
-                  <div className="text-xl font-semibold">
-                    RM{" "}
-                    {calculation.nisabThreshold.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-border pt-4 mb-4">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <div className="text-sm text-muted-foreground">
-                      Zakat Due (2.5%)
-                    </div>
-                    <div className="text-2xl font-bold text-primary">
-                      RM{" "}
-                      {calculation.zakatPayable.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </div>
-                  </div>
-
-                  {calculation.zakatPayable === 0 && (
-                    <div className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">
-                      Below Nisab
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {calculation.zakatPayable === 0 ? (
-                <p className="text-sm text-muted-foreground">
-                  Your wealth is below the Nisab threshold, so no Zakat is due.
-                  However, you may still wish to give voluntary charity
-                  (Sadaqah).
-                </p>
-              ) : (
-                <p className="text-sm text-muted-foreground">
-                  This amount is due as Zakat based on your input. Please note
-                  that this is a basic calculation and you may want to consult
-                  with a Zakat advisor for complex cases.
-                </p>
-              )}
+            <h2 className="text-xl font-bold mb-4">Select an Organization</h2>
+            
+            <div className="mb-6">
+              <p className="text-muted-foreground">
+                Choose an organization to receive your {causes[donationType as keyof typeof causes]} donation.
+                All organizations are verified and monitored to ensure transparent fund management.
+              </p>
             </div>
-
-            <h3 className="text-lg font-bold mb-4">
-              Select an Organization to Receive Your Zakat
-            </h3>
 
             <div className="space-y-4 mb-8">
               {organizations.map((org) => (
                 <button
                   key={org.id}
                   onClick={() => handleOrganizationSelect(org.id)}
-                  className={`selection-btn w-full text-left p-4 rounded-md transition-all ${selectedOrganization === org.id ? "border" : ""
-                    }`}
+                  className={`selection-btn w-full text-left p-4 rounded-md transition-all ${
+                    selectedOrganization === org.id ? "border" : ""
+                  }`}
                 >
                   <div className="font-medium mb-1">{org.name}</div>
                   <div className="text-sm text-muted-foreground">
@@ -339,6 +306,19 @@ export default function ZakatDonation() {
               ))}
             </div>
 
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2">
+                Add a Message (Optional)
+              </label>
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="block w-full rounded-md border border-input py-2 px-3 bg-background"
+                rows={3}
+                placeholder="Add a personal message or dua"
+              />
+            </div>
+
             <div className="flex justify-between">
               <button
                 onClick={() => setStep(1)}
@@ -346,23 +326,13 @@ export default function ZakatDonation() {
               >
                 Back
               </button>
-
-              {calculation.zakatPayable === 0 ? (
-                <Link
-                  href="/donate/sadaqah"
-                  className="px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium"
-                >
-                  Give Sadaqah Instead
-                </Link>
-              ) : (
-                <button
-                  onClick={() => setStep(3)}
-                  className="px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium"
-                  disabled={!selectedOrganization}
-                >
-                  Proceed to Review
-                </button>
-              )}
+              <button
+                onClick={() => setStep(3)}
+                className="px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium"
+                disabled={!selectedOrganization}
+              >
+                Continue
+              </button>
             </div>
           </div>
         )}
@@ -374,14 +344,28 @@ export default function ZakatDonation() {
             <div className="mb-8 space-y-6">
               <div className="p-4 bg-secondary rounded-lg">
                 <div className="text-sm text-muted-foreground mb-1">
-                  Zakat Amount
+                  Donation Amount
                 </div>
                 <div className="text-2xl font-bold">
                   RM{" "}
-                  {calculation.zakatPayable.toLocaleString(undefined, {
+                  {donationAmount.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
+                  {recurringDonation && (
+                    <span className="text-sm font-normal text-muted-foreground ml-2">
+                      ({frequency})
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className="p-4 bg-secondary rounded-lg">
+                <div className="text-sm text-muted-foreground mb-1">
+                  Donation Type
+                </div>
+                <div className="text-lg font-medium">
+                  {causes[donationType as keyof typeof causes]}
                 </div>
               </div>
 
@@ -390,34 +374,23 @@ export default function ZakatDonation() {
                   Selected Organization
                 </div>
                 <div className="text-lg font-medium">
-                  {
-                    organizations.find((org) => org.id === selectedOrganization)
-                      ?.name
-                  }
+                  {organizations.find((org) => org.id === selectedOrganization)?.name}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  {
-                    organizations.find((org) => org.id === selectedOrganization)
-                      ?.description
-                  }
+                  {organizations.find((org) => org.id === selectedOrganization)?.description}
                 </div>
               </div>
 
-              <div className="p-4 border border-border rounded-lg">
-                <h3 className="font-medium mb-2">Distribution Categories</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Your Zakat will be distributed across the following categories
-                  as prescribed:
-                </p>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="text-sm">• The poor (Fuqara)</div>
-                  <div className="text-sm">• The needy (Masakin)</div>
-                  <div className="text-sm">• Zakat administrators</div>
-                  <div className="text-sm">• Those in debt (Gharimin)</div>
-                  <div className="text-sm">• Wayfarers (Ibn al-Sabil)</div>
-                  <div className="text-sm">• In the cause of Allah</div>
+              {message && (
+                <div className="p-4 bg-secondary rounded-lg">
+                  <div className="text-sm text-muted-foreground mb-1">
+                    Your Message
+                  </div>
+                  <div className="text-sm">
+                    {message}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="mb-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
@@ -441,7 +414,7 @@ export default function ZakatDonation() {
                   <h4 className="font-medium mb-1">Transparent Distribution</h4>
                   <p className="text-sm text-muted-foreground">
                     Your donation will be recorded on our blockchain system,
-                    allowing you to track exactly how your Zakat is being
+                    allowing you to track exactly how your Sadaqah is being
                     distributed. You'll receive a unique transaction ID for
                     verification.
                   </p>
@@ -488,11 +461,11 @@ export default function ZakatDonation() {
               <h2 className="text-xl font-bold mb-2">Payment</h2>
               <p className="text-muted-foreground max-w-md mx-auto">
                 Please select your preferred payment method to complete your
-                Zakat payment of
+                Sadaqah donation of
                 <span className="font-bold">
                   {" "}
                   RM{" "}
-                  {calculation.zakatPayable.toLocaleString(undefined, {
+                  {donationAmount.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
@@ -503,8 +476,9 @@ export default function ZakatDonation() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <button
                 onClick={() => setPaymentMethod("card")}
-                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${paymentMethod === "card" ? "border" : ""
-                  }`}
+                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${
+                  paymentMethod === "card" ? "border" : ""
+                }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -525,8 +499,9 @@ export default function ZakatDonation() {
               </button>
               <button
                 onClick={() => setPaymentMethod("fpx")}
-                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${paymentMethod === "fpx" ? "border" : ""
-                  }`}
+                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${
+                  paymentMethod === "fpx" ? "border" : ""
+                }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -548,8 +523,9 @@ export default function ZakatDonation() {
               </button>
               <button
                 onClick={() => setPaymentMethod("ewallet")}
-                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${paymentMethod === "ewallet" ? "border" : ""
-                  }`}
+                className={`selection-btn p-4 rounded-md transition-all bg-background flex flex-col items-center justify-center ${
+                  paymentMethod === "ewallet" ? "border" : ""
+                }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -576,11 +552,11 @@ export default function ZakatDonation() {
               <h3 className="font-medium text-sm mb-2">Payment Summary</h3>
               <div className="flex justify-between mb-2">
                 <span className="text-sm text-muted-foreground">
-                  Zakat Amount
+                  Donation Amount
                 </span>
                 <span>
                   RM{" "}
-                  {calculation.zakatPayable.toLocaleString(undefined, {
+                  {donationAmount.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
@@ -596,7 +572,7 @@ export default function ZakatDonation() {
                 <span className="font-medium">Total</span>
                 <span className="font-bold">
                   RM{" "}
-                  {calculation.zakatPayable.toLocaleString(undefined, {
+                  {donationAmount.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
@@ -624,7 +600,7 @@ export default function ZakatDonation() {
         <div className="mt-12 text-center">
           <h3 className="text-lg font-bold mb-2">Need Assistance?</h3>
           <p className="text-muted-foreground mb-4">
-            If you have questions about Zakat calculation or the donation
+            If you have questions about Sadaqah or the donation
             process, our team is here to help.
           </p>
           <div className="flex justify-center">

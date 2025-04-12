@@ -17,7 +17,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({ userData }) => {
           <h2 className="text-xl font-bold">Saved Payment Methods</h2>
         </div>
         <div className="p-4 space-y-4">
-          {userData.savedPaymentMethods.map((method) => (
+          {userData.savedPaymentMethods.map((method: any) => (
             <div
               key={method.id}
               className="p-4 border border-border rounded-lg flex justify-between items-center"

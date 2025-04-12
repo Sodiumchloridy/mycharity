@@ -106,7 +106,7 @@ export default function Dashboard() {
   /**
    * Format date for display
    */
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-MY", {
       year: "numeric",
@@ -118,7 +118,7 @@ export default function Dashboard() {
   /**
    * Get appropriate CSS class for status badges
    */
-  const getStatusBadgeClass = (status) => {
+  const getStatusBadgeClass = (status: string) => {
     switch (status) {
       case "Distributed":
         return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";

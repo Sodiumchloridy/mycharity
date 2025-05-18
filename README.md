@@ -1,4 +1,6 @@
-![image](https://github.com/user-attachments/assets/0705bdbe-1a6a-47c4-ae47-4cd4e529e079)
+<div align='center'>
+  <img src='https://github.com/user-attachments/assets/0705bdbe-1a6a-47c4-ae47-4cd4e529e079'/>
+</div>
 
 > [!NOTE]
 > This project was developed for the UM HACKATHON 2025 Domain 1: Enhancing Charity & Donations through Fintech & Technology by Team Leviathan.
